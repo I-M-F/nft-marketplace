@@ -21,7 +21,7 @@ contract NFTMArket is ReentrancyGuard {
         uint itemId;
         address nftContract;
         uint256 tokenId;
-        address tokenId;
+        // address tokenId;
         address payable seller;
         address payable owner;
         uint256 price;
@@ -30,7 +30,7 @@ contract NFTMArket is ReentrancyGuard {
 
     mapping(uint256 => MarketItem) private idToMarketItem;
 
-    event MarketItemCreated {
+    event MarketItemCreated (
         uint indexed itemId,
         address indexed nftContract,
         uint256 indexed tokenId,
@@ -38,12 +38,8 @@ contract NFTMArket is ReentrancyGuard {
         address owner,
         uint256 price,
         bool sold
-    };
+    );
 
-    function name() {
-        
-    }
-    
     function getListingPrice() public view returns (uint256) {
         return listingPrice;
     }
@@ -123,7 +119,7 @@ contract NFTMArket is ReentrancyGuard {
 
         for (uint i = 0; i < totalItemCount; i++) {
             if (idToMarketItem[i + 1].owner == msg.sender) { 
-                intemCount += 1;
+                itemCount += 1;
                 }
         }
         MarketItem[] memory items = new MarketItem[](itemCount);
@@ -145,7 +141,7 @@ contract NFTMArket is ReentrancyGuard {
 
         for (uint i = 0; i < totalItemCount; i++) {
             if (idToMarketItem[i + 1].seller == msg.sender) { 
-                intemCount += 1;
+                itemCount += 1;
                 }
         }
         MarketItem[] memory items = new MarketItem[](itemCount);
