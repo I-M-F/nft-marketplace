@@ -1,12 +1,10 @@
 require("@nomiclabs/hardhat-waffle");
-
-
-
-
+// const infuraId = fs.readFileSync(".infuraid").toString().trim() || "";
 const fs = require("fs")
 const privateKey = fs.readFileSync(".secret").toString()
 
 module.exports = {
+  defaultNetwork: "hardhat",
   networks: {
     hardhat: {
       chainId: 1337
@@ -20,5 +18,13 @@ module.exports = {
       accounts: [privateKey]
     }
   },
-  solidity: "0.8.9",
+  solidity: {
+    version: "0.8.9",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200
+      }
+    }
+  }
 };
